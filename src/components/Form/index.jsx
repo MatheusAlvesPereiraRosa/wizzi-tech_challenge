@@ -3,61 +3,42 @@ import "./index.css";
 import { useState, useRef } from "react";
 
 export const Form = () => {
-  const formRef = useRef()
+  const formRef = useRef();
   const [form, setForm] = useState({
-    apartureDate: "",
-    departureDate: "",
-    adults: 0,
-    children: 0,
-    passagerName: "",
-    locationName: "",
+    departure: "",
+    return: "",
+    adults: "0",
+    children: "0",
+    origin: "",
+    destination: "",
+    email: "",
+    name: "",
   });
-  const [errorName, setErrorName] = useState(null);
-  const [errorEmail, setErrorEmail] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [emptyValues, setEmptyValue] = useState(false);
+  const [validEmail, setValidEmail] = useState(false);
 
-  const validate = () => {
-    let error = false;
+  console.log(form);
 
-    setErrorName(null);
-    setErrorEmail(null);
-    setErrorMessage(null);
-
-    if (form.name === "") {
-      setErrorName("Preencha o campo de nome!");
-      error = true;
-    }
-
-    if (form.email === "" || form.email.indexOf("@") == -1) {
-      setErrorEmail("Preencha o campo de nome!");
-      error = true;
-    }
-
-    if (form.message === "") {
-      setErrorMessage("Preencha o campo de nome!");
-      error = true;
-    }
-
-    return !error;
-  };
+  const validate = () => {};
 
   const handleChange = (e) => {
+    console.log(e.target);
+
     const { name, value } = e.target;
 
     setForm({ ...form, [name]: value });
-
-    console.log(value);
-    console.log(typeof value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(validate());
+
     if (validate()) {
       console.log("Formulário enviado com sucesso");
-    } else {
-      console.log("Houve algum erro");
     }
+
+    console.log("Houve algum erro");
   };
 
   return (
@@ -73,9 +54,8 @@ export const Form = () => {
         <input
           type="date"
           className="form-control"
-          id="apparture"
-          name="apparture"
-          value={form.apartureDate}
+          name="departure"
+          value={form.aparture}
           onChange={handleChange}
         />
       </div>
@@ -86,9 +66,8 @@ export const Form = () => {
         <input
           type="date"
           className="form-control"
-          id="depparture"
-          name="depparture"
-          value={form.departureDate}
+          name="return"
+          value={form.departure}
           onChange={handleChange}
         />
       </div>
@@ -99,9 +78,9 @@ export const Form = () => {
         <input
           type="number"
           className="form-control"
-          id="quantity"
-          name="quantity"
-          value={form.appartureDate}
+          name="adults"
+          min={0}
+          value={form.adults}
           onChange={handleChange}
         />
       </div>
@@ -112,9 +91,9 @@ export const Form = () => {
         <input
           type="number"
           className="form-control"
-          id="quantity"
-          name="quantity"
-          value={form.appartureDate}
+          name="children"
+          min={0}
+          value={form.children}
           onChange={handleChange}
         />
       </div>
@@ -123,11 +102,11 @@ export const Form = () => {
           Origem
         </label>
         <input
-          type="email"
+          type="name"
           className="form-control"
-          id="exampleFormControlInput1"
           placeholder="Carbonita"
-          value={form.appartureDate}
+          name="origin"
+          value={form.origin}
           onChange={handleChange}
         />
       </div>
@@ -136,11 +115,11 @@ export const Form = () => {
           Destino
         </label>
         <input
-          type="email"
+          type="name"
           className="form-control"
-          id="exampleFormControlInput1"
           placeholder="Belo Horizonte"
-          value={form.appartureDate}
+          name="destination"
+          value={form.destination}
           onChange={handleChange}
         />
       </div>
@@ -149,11 +128,11 @@ export const Form = () => {
           Nome do passageiro principal
         </label>
         <input
-          type="email"
+          type="name"
           className="form-control"
-          id="exampleFormControlInput1"
+          name="name"
           placeholder="Nome de exemplo"
-          value={form.appartureDate}
+          value={form.name}
           onChange={handleChange}
         />
       </div>
@@ -164,14 +143,14 @@ export const Form = () => {
         <input
           type="email"
           className="form-control"
-          id="exampleFormControlInput1"
+          name="email"
           placeholder="algo@exemplo.com"
-          value={form.appartureDate}
+          value={form.email}
           onChange={handleChange}
         />
       </div>
       <div className="d-grid gap-2 mt-3">
-        <button className="btn btn-primary" type="button">
+        <button className="btn btn-primary" type="submit">
           Enviar
         </button>
       </div>
