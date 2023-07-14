@@ -5,12 +5,12 @@ import { Form } from "../components/Form/index.jsx";
 
 function Home() {
   return (
-    <div className="bg-image position-relative vh-100">
-      <div className="filter" />
-      <div className="fluid-container vh-100 position-relative d-flex flex-column justify-content-center">
+    <>
+      <div className="filter opacity-100 position-absolute bottom-0 start-0 w-100 h-100" />
+      <div className="position-relative fluid-container h-100 position-relative d-flex flex-column justify-content-center vh-100">
         <Form />
       </div>
-    </div>
+    </>
   );
 }
 

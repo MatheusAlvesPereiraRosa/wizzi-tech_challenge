@@ -122,7 +122,7 @@ export const Form = () => {
 
   return (
     <form
-      className="form-box fluid-container row align-items-baseline margin-central p-3 rounded-3"
+      className="form-box fluid-container row align-items-baseline margin-central p-3 rounded-3 my-auto "
       onSubmit={handleSubmit}
       ref={formRef}
     >
@@ -140,7 +140,7 @@ export const Form = () => {
       ) : (
         ""
       )}
-      <div className="col-md-3">
+      <div className="col-lg-3 col-md-6">
         <label className="form-label">Ida:</label>
         <input
           type="date"
@@ -156,7 +156,7 @@ export const Form = () => {
           <span className="text-danger fw-bolder">{errorDeparture}</span>
         )}
       </div>
-      <div className="col-md-3 ">
+      <div className="col-lg-3 col-md-6">
         <label className="form-label">Volta:</label>
         <input
           type="date"
@@ -172,7 +172,7 @@ export const Form = () => {
           <span className="text-danger fw-bolder">{errorReturn}</span>
         )}
       </div>
-      <div className="col-md-3 mt-3">
+      <div className="col-lg-3  col-md-6 mt-3">
         <label className="form-label">
           Quantidade de passageiros (adultos):
         </label>
@@ -190,7 +190,7 @@ export const Form = () => {
           <span className="text-danger fw-bolder">{errorAdults}</span>
         )}
       </div>
-      <div className="col-md-3 mt-3">
+      <div className="col-lg-3 col-md-6 mt-3">
         <label className="form-label">
           Quantidade de passageiros (crianças):
         </label>
