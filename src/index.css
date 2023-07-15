@@ -1,6 +1,18 @@
-body {
-  background-image: url("../src/assets/imgs/bg2.jpg");
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500;800&display=swap');
+
+* {
+}
+
+body, html {
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  background-image: url("../src/assets/imgs/bg1.jpg");
   position: relative;
+}
+
+h1, h2, p, label, span {
+  font-family: 'Merriweather Sans', sans-serif;
 }
 
 .filter {
