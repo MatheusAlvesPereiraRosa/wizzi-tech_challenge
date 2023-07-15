@@ -1,7 +1,7 @@
 import "./index.css";
 import { useState, useRef } from "react";
 
-export const Form = () => {
+export const Form = ({ handleStatus }) => {
   // referência do formulário
   const formRef = useRef();
 
@@ -15,12 +15,6 @@ export const Form = () => {
     destination: "",
     email: "",
     name: "",
-  });
-
-  // status do envio
-  const [status, setStatus] = useState({
-    type: "",
-    message: "",
   });
 
   // tratamento de erros
@@ -108,12 +102,12 @@ export const Form = () => {
     console.log(validate());
 
     if (validate()) {
-      setStatus({
+      handleStatus({
         type: "sucesso",
         message: "Formulário enviado com sucesso",
       });
     } else {
-      setStatus({
+      handleStatus({
         type: "erro",
         message: "Houve algum erro",
       });
@@ -127,21 +121,6 @@ export const Form = () => {
       ref={formRef}
     >
       <h2 className="text-center mb-3">Carbo-viagens</h2>
-
-      {status.type === "sucesso" ? (
-        <div className="alert alert-success" role="alert">
-          <span>{status.message}</span>
-        </div>
-      ) : (
-        ""
-      )}
-      {status.type === "erro" ? (
-        <div className="alert alert-danger" role="alert">
-          <span>{status.message}</span>
-        </div>
-      ) : (
-        ""
-      )}
 
       <div className="input-container form-scroll fluid-container row align-items-baseline">
         <div className="col-lg-3 col-md-6">
@@ -177,9 +156,7 @@ export const Form = () => {
           )}
         </div>
         <div className="col-lg-3  col-md-6 mt-3">
-          <label className="form-label">
-            Quantidade de passageiros (adultos):
-          </label>
+          <label className="form-label">Nº de passageiros (adultos):</label>
           <input
             type="number"
             className="form-control"
@@ -195,9 +172,7 @@ export const Form = () => {
           )}
         </div>
         <div className="col-lg-3 col-md-6 mt-3">
-          <label className="form-label">
-            Quantidade de passageiros (crianças):
-          </label>
+          <label className="form-label">Nº de passageiros (crianças):</label>
           <input
             type="number"
             className="form-control"
@@ -273,7 +248,7 @@ export const Form = () => {
         </div>
       </div>
       <div className="d-grid mt-3">
-        <button className="btn btn-primary" type="submit">
+        <button className="btn btn-primary" type="submit" id="submit">
           Enviar
         </button>
       </div>

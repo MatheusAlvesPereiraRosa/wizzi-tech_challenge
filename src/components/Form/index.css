@@ -10,14 +10,9 @@
   padding: 0 1rem 1rem 1rem;
 }
 
-.form-scroll {
-  overflow-y: scroll;
-  max-height: 396px;
-}
-
-/*@media screen and (max-width: 770px) {
+@media screen and (max-width: 770px) {
   .form-scroll {
     overflow-y: scroll;
     max-height: 396px;
   }
-}*/
+}
