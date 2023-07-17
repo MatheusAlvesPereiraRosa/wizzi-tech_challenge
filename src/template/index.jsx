@@ -1,16 +1,36 @@
-// import logo from "../logo.svg";
-// import "./index.css";
+// import de arquivos de css
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { useState } from "react";
+
+// import de componentes
 import { Form } from "../components/Form/index.jsx";
-// import { Header } from "../components/Header";
+import { StatusToast } from "../components/StatusToast";
 
 function Home() {
+  // status do envio
+  const [status, setStatus] = useState({
+    type: "",
+    message: "",
+  });
+
+  // função para mostrar toast
+  const [show, setShow] = useState(false);
+
+  // função para settar estado do componente pai
+  function handleStatus(statusSubmit) {
+    setStatus(statusSubmit);
+    console.log("Mudei o estado");
+  }
+
   return (
-    <div className="bg-image position-relative vh-100">
-      <div className="filter" />
-      <div className="fluid-container vh-100 position-relative d-flex flex-column justify-content-center">
-        <Form />
+    <main className="position-relative vh-100">
+      <div className="position-absolute top-50 start-50 translate-middle form-container">
+        <Form handleStatus={handleStatus} setShow={setShow} />
       </div>
-    </div>
+      <StatusToast status={status} show={show} setShow={setShow} />
+    </main>
   );
 }
 

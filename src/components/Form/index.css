@@ -1,8 +1,33 @@
-.margin-central {
-  margin-inline: 20%;
+.form-box {
+  background-color: aliceblue;
 }
 
-.form-box {
-  
-  background-color: aliceblue;
+.titulo {
+  z-index: 0;
+}
+
+.titulo::after {
+  content: '';
+  position: absolute;
+  top: 2.2rem;
+  left: 37.9%;
+  width: 25%;
+  height: 0.2rem;
+  background: red;
+  z-index: -1;
+}
+
+.form-control:focus {
+  transition: .5s;
+}
+
+.btn {
+  transition: .5s;
+}
+
+@media screen and (max-width: 770px) {
+  .form-scroll {
+    overflow-y: scroll;
+    max-height: 396px;
+  }
 }
