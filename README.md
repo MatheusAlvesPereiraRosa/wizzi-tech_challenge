@@ -14,9 +14,16 @@ https://tech-challenge-w.netlify.app/
 
 ## Instalação
 
-Rode o comando npm i no terminal que desejar antes de iniciar o projeto
+Clone o projeto do repositório com o comando
 
 ```bash
+  git clone git@github.com:MatheusAlvesPereiraRosa/wizzi-tech_challenge.git
+```
+
+Entre na pasta do projeto e rode o comando npm i no terminal que desejar antes de iniciar o projeto
+
+```bash
+  cd wizzi-tech_challenge.git/
   npm install
 ```
 
