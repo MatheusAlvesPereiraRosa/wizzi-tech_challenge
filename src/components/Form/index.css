@@ -1,9 +1,20 @@
-.margin-central {
-  margin-inline: 20%;
-}
-
 .form-box {
   background-color: aliceblue;
+}
+
+.titulo {
+  z-index: 0;
+}
+
+.titulo::after {
+  content: '';
+  position: absolute;
+  top: 2.2rem;
+  left: 37.9%;
+  width: 25%;
+  height: 0.2rem;
+  background: red;
+  z-index: -1;
 }
 
 .form-control:focus {
@@ -12,10 +23,6 @@
 
 .btn {
   transition: .5s;
-}
-
-.p-button {
-  padding: 0 1rem 1rem 1rem;
 }
 
 @media screen and (max-width: 770px) {

@@ -1,5 +1,6 @@
 import "./index.css";
-import { useState, useRef } from "react";
+import moment from "moment";
+import { useState, useRef, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 
 export const Form = ({ handleStatus, setShow }) => {
@@ -27,6 +28,28 @@ export const Form = ({ handleStatus, setShow }) => {
   const [errorEmail, setErrorEmail] = useState(null);
   const [errorName, setErrorName] = useState(null);
 
+  // validação de data
+  const CURRENT_DATE = moment();
+  const FORMATTED_CURRENT = CURRENT_DATE.format("YYYY/MM/DD");
+
+  const [departureDateObject, setDepartureDateObject] = useState();
+  const [returnDateObject, setReturnDateObject] = useState();
+
+  useEffect(() => {
+    const dateObject = moment(form.departure, "YYYY/MM/DD");
+    setDepartureDateObject(dateObject);
+  }, [form.departure]);
+
+  useEffect(() => {
+    const dateObject = moment(form.return, "YYYY/MM/DD");
+    setReturnDateObject(dateObject);
+  }, [form.return]);
+
+  console.log(`A data atual ${CURRENT_DATE}`);
+  console.log(`A data de ida ${departureDateObject}`);
+  console.log(`A data de volta ${returnDateObject}`);
+  console.log(FORMATTED_CURRENT);
+
   // validação do formulário
   const validate = () => {
     let error = false;
@@ -42,10 +65,20 @@ export const Form = ({ handleStatus, setShow }) => {
     if (form.departure === "") {
       setErrorDeparture("Informe a data de ida!");
       error = true;
+    } else if (departureDateObject.isBefore(FORMATTED_CURRENT)) {
+      setErrorDeparture("A data de ida precisa ser maior do que a atual!");
     }
 
     if (form.return === "") {
       setErrorReturn("Informe a data de retorno!");
+      error = true;
+    } else if (returnDateObject.isBefore(FORMATTED_CURRENT)) {
+      setErrorReturn("A data de ida precisa ser maior do que a atual!");
+    }
+
+    if (departureDateObject.isAfter(returnDateObject)) {
+      setErrorDeparture("A data de ida tem que ser antes da data de volta");
+      console.log("A data tá toda errada");
       error = true;
     }
 
@@ -123,7 +156,9 @@ export const Form = ({ handleStatus, setShow }) => {
       onSubmit={handleSubmit}
       ref={formRef}
     >
-      <h2 className="text-center mb-3">Carbo-viagens</h2>
+      <h2 className="titulo position-relative text-center mb-3">
+        Carbo-viagens
+      </h2>
 
       <div className="input-container form-scroll fluid-container row align-items-baseline">
         <div className="col-lg-3 col-md-6">
@@ -139,7 +174,7 @@ export const Form = ({ handleStatus, setShow }) => {
             }}
           />
           {errorDeparture && (
-            <span className="text-danger fw-bolder">{errorDeparture}</span>
+            <p className="text-danger fw-bolder mt-2 mb-0">{errorDeparture}</p>
           )}
         </div>
         <div className="col-lg-3 col-md-6">
@@ -155,10 +190,10 @@ export const Form = ({ handleStatus, setShow }) => {
             }}
           />
           {errorReturn && (
-            <span className="text-danger fw-bolder">{errorReturn}</span>
+            <p className="text-danger fw-bolder mt-2 mb-0">{errorReturn}</p>
           )}
         </div>
-        <div className="col-lg-3  col-md-6 mt-3">
+        <div className="col-lg-3  col-md-6 mt-3 mb-0">
           <label className="form-label">Nº de passageiros (adultos):</label>
           <input
             type="number"
@@ -171,7 +206,7 @@ export const Form = ({ handleStatus, setShow }) => {
             }}
           />
           {errorAdults && (
-            <span className="text-danger fw-bolder">{errorAdults}</span>
+            <p className="text-danger fw-bolder mt-2">{errorAdults}</p>
           )}
         </div>
         <div className="col-lg-3 col-md-6 mt-3">
@@ -198,7 +233,7 @@ export const Form = ({ handleStatus, setShow }) => {
             }}
           />
           {errorOrigin && (
-            <span className="text-danger fw-bolder">{errorOrigin}</span>
+            <p className="text-danger fw-bolder mt-2 mb-0">{errorOrigin}</p>
           )}
         </div>
         <div className="col-md-6 mt-3">
@@ -214,7 +249,9 @@ export const Form = ({ handleStatus, setShow }) => {
             }}
           />
           {errorDestination && (
-            <span className="text-danger fw-bolder">{errorDestination}</span>
+            <p className="text-danger fw-bolder mt-2 mb-0">
+              {errorDestination}
+            </p>
           )}
         </div>
         <div className="col-md-6 mt-3">
@@ -230,10 +267,10 @@ export const Form = ({ handleStatus, setShow }) => {
             }}
           />
           {errorName && (
-            <span className="text-danger fw-bolder">{errorName}</span>
+            <p className="text-danger fw-bolder mt-2 mb-0">{errorName}</p>
           )}
         </div>
-        <div className="col-md-6 mt-3">
+        <div className="col-md-6 mt-3 mb-0">
           <label className="form-label">Endereço de email</label>
           <input
             type="email"
@@ -246,7 +283,7 @@ export const Form = ({ handleStatus, setShow }) => {
             }}
           />
           {errorEmail && (
-            <span className="text-danger fw-bolder">{errorEmail}</span>
+            <p className="text-danger fw-bolder mt-2 mb-0">{errorEmail}</p>
           )}
         </div>
       </div>
