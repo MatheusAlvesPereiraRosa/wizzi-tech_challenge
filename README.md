@@ -30,6 +30,8 @@ E pronto, o projeto já vai estar funcional e pronto para ser visualizado/testad
     
 ## Bibliotecas/Frameworks utilizados
 
+**React js:** Foi o framework escolhido para desenvolver o projeto devido a sua facilidade de uso e a familiaridade que possuo com ele.
+
 **Moment js:** É uma biblioteca que facilita o uso de formatos, funções e comparações de dados do tipo Date. Foi utilizado no projeto para validar as datas de ida e volta da viagem.
 
 **Boostrap e React-Boostrap:** É um framework de estilização Front-End com classes, funções, componentes entre outros. Foi utilizado para aproveitar dos estilos já disponíveis e a aplicar responsividade na página. Utilizei a sua contraparte (React-Boostrap) porque alguns componentes que usam DOM entram em conflito com o virtual DOM do React.
