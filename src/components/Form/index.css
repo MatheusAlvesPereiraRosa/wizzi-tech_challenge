@@ -6,6 +6,14 @@
   background-color: aliceblue;
 }
 
+.form-control:focus {
+  transition: .5s;
+}
+
+.btn {
+  transition: .5s;
+}
+
 .p-button {
   padding: 0 1rem 1rem 1rem;
 }

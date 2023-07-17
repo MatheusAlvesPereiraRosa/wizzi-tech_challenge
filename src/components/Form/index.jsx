@@ -22,13 +22,10 @@ export const Form = ({ handleStatus, setShow }) => {
   const [errorDeparture, setErrorDeparture] = useState(null);
   const [errorReturn, setErrorReturn] = useState(null);
   const [errorAdults, setErrorAdults] = useState(null);
-  // const [errorChildren, setErrorChildren] = useState(null);
   const [errorOrigin, setErrorOrigin] = useState(null);
   const [errorDestination, setErrorDestination] = useState(null);
   const [errorEmail, setErrorEmail] = useState(null);
   const [errorName, setErrorName] = useState(null);
-
-  console.log(form);
 
   // validação do formulário
   const validate = () => {
@@ -87,8 +84,8 @@ export const Form = ({ handleStatus, setShow }) => {
     return !error;
   };
 
-  // funções
-
+  // função para setar estado toda vez
+  // que mudar algo nos inputs
   const handleChange = (e) => {
     console.log(e.target);
 
@@ -97,20 +94,25 @@ export const Form = ({ handleStatus, setShow }) => {
     setForm({ ...form, [name]: value });
   };
 
+  // função para captar evento de submit
+  // e setar status do envio
   const handleSubmit = (e) => {
     e.preventDefault();
 
     console.log(validate());
 
     if (validate()) {
+      // chama função do componente pai
       handleStatus({
-        type: "sucesso",
+        type: "Sucesso",
         message: "Formulário enviado com sucesso",
       });
     } else {
+      // chama função do componente pai
       handleStatus({
-        type: "erro",
-        message: "Houve algum erro",
+        type: "Erro",
+        message:
+          "Houve algum erro na validação do formulário, corrija e tente novamente",
       });
     }
   };

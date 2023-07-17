@@ -1,8 +1,10 @@
+// import de arquivos de css
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { useState } from "react";
 
+// import de componentes
 import { Form } from "../components/Form/index.jsx";
 import { StatusToast } from "../components/StatusToast";
 
@@ -13,6 +15,7 @@ function Home() {
     message: "",
   });
 
+  // função para mostrar toast
   const [show, setShow] = useState(false);
 
   // função para settar estado do componente pai

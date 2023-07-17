@@ -1,9 +1,10 @@
 import Toast from "react-bootstrap/Toast";
+import "./index.css";
 
 export const StatusToast = ({ status, show, setShow }) => {
   return (
-    <div className="position-absolute top-0 end-0">
-      {status && status.type === "sucesso" ? (
+    <div className="position-absolute toast-top-end">
+      {status && status.type === "Sucesso" ? (
         <Toast
           animation
           onClose={() => setShow(false)}
@@ -12,9 +13,11 @@ export const StatusToast = ({ status, show, setShow }) => {
           autohide
         >
           <Toast.Header className="bg-success">
-            <h3 className="me-auto">{status.type}</h3>
+            <span className="me-auto fs-4">{status.type}</span>
           </Toast.Header>
-          <Toast.Body className="bg-sucess-subtle">{status.message}</Toast.Body>
+          <Toast.Body className="bg-success-subtle">
+            {status.message}
+          </Toast.Body>
         </Toast>
       ) : (
         <Toast
@@ -25,7 +28,7 @@ export const StatusToast = ({ status, show, setShow }) => {
           autohide
         >
           <Toast.Header className="bg-danger">
-            <h3 className="me-auto">{status.type}</h3>
+            <span className="me-auto fs-4">{status.type}</span>
           </Toast.Header>
           <Toast.Body className="bg-danger-subtle">{status.message}</Toast.Body>
         </Toast>
