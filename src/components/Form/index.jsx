@@ -250,7 +250,7 @@ export const Form = ({ handleStatus, setShow }) => {
       </div>
       <div className="d-grid mt-3">
         <Button type="submit" onClick={() => setShow(true)}>
-          Show Toast
+          Enviar
         </Button>
       </div>
     </form>
