@@ -1,7 +1,8 @@
 import "./index.css";
 import { useState, useRef } from "react";
+import Button from "react-bootstrap/Button";
 
-export const Form = ({ handleStatus }) => {
+export const Form = ({ handleStatus, setShow }) => {
   // referência do formulário
   const formRef = useRef();
 
@@ -248,9 +249,9 @@ export const Form = ({ handleStatus }) => {
         </div>
       </div>
       <div className="d-grid mt-3">
-        <button className="btn btn-primary" type="submit" id="submit">
-          Enviar
-        </button>
+        <Button type="submit" onClick={() => setShow(true)}>
+          Show Toast
+        </Button>
       </div>
     </form>
   );
