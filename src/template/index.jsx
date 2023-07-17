@@ -6,7 +6,7 @@ import { useState } from "react";
 
 // import de componentes
 import { Form } from "../components/Form/index.jsx";
-import { StatusToast } from "../components/StatusToast";
+import { StatusToast } from "../components/StatusToast/index.jsx";
 
 function Home() {
   // status do envio
@@ -21,7 +21,6 @@ function Home() {
   // função para settar estado do componente pai
   function handleStatus(statusSubmit) {
     setStatus(statusSubmit);
-    console.log("Mudei o estado");
   }
 
   return (
