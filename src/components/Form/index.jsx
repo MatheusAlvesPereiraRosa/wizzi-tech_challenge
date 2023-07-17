@@ -1,5 +1,10 @@
 import "./index.css";
+
+// biblioteca para utilizar e comparar datas
 import moment from "moment";
+
+// import de pacote para especificar os tipos de props
+import P from "prop-types";
 import { useState, useRef, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 
@@ -28,13 +33,17 @@ export const Form = ({ handleStatus, setShow }) => {
   const [errorEmail, setErrorEmail] = useState(null);
   const [errorName, setErrorName] = useState(null);
 
-  // validação de data
+  /// validação de data
+
+  // constantes com o valor do horário atual
   const CURRENT_DATE = moment();
   const FORMATTED_CURRENT = CURRENT_DATE.format("YYYY/MM/DD");
 
   const [departureDateObject, setDepartureDateObject] = useState();
   const [returnDateObject, setReturnDateObject] = useState();
 
+  // hooks para settar data no formato que pode ser comparável pelo moments js
+  // toda vez que a data de ida e volta mudarem
   useEffect(() => {
     const dateObject = moment(form.departure, "YYYY/MM/DD");
     setDepartureDateObject(dateObject);
@@ -45,12 +54,7 @@ export const Form = ({ handleStatus, setShow }) => {
     setReturnDateObject(dateObject);
   }, [form.return]);
 
-  console.log(`A data atual ${CURRENT_DATE}`);
-  console.log(`A data de ida ${departureDateObject}`);
-  console.log(`A data de volta ${returnDateObject}`);
-  console.log(FORMATTED_CURRENT);
-
-  // validação do formulário
+  // função de validação do formulário
   const validate = () => {
     let error = false;
 
@@ -77,8 +81,7 @@ export const Form = ({ handleStatus, setShow }) => {
     }
 
     if (departureDateObject.isAfter(returnDateObject)) {
-      setErrorDeparture("A data de ida tem que ser antes da data de volta");
-      console.log("A data tá toda errada");
+      setErrorDeparture("A data de ida tem que ser antes da data de volta!");
       error = true;
     }
 
@@ -120,8 +123,6 @@ export const Form = ({ handleStatus, setShow }) => {
   // função para setar estado toda vez
   // que mudar algo nos inputs
   const handleChange = (e) => {
-    console.log(e.target);
-
     const { name, value } = e.target;
 
     setForm({ ...form, [name]: value });
@@ -131,8 +132,6 @@ export const Form = ({ handleStatus, setShow }) => {
   // e setar status do envio
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(validate());
 
     if (validate()) {
       // chama função do componente pai
@@ -225,7 +224,7 @@ export const Form = ({ handleStatus, setShow }) => {
           <input
             type="name"
             className="form-control"
-            placeholder="Carbonita"
+            placeholder="Carbonita/MG"
             name="origin"
             value={form.origin}
             onChange={(e) => {
@@ -241,7 +240,7 @@ export const Form = ({ handleStatus, setShow }) => {
           <input
             type="name"
             className="form-control"
-            placeholder="Belo Horizonte"
+            placeholder="Belo Horizonte/MG"
             name="destination"
             value={form.destination}
             onChange={(e) => {
@@ -294,4 +293,9 @@ export const Form = ({ handleStatus, setShow }) => {
       </div>
     </form>
   );
+};
+
+Form.propTypes = {
+  handleStatus: P.func.isRequired,
+  setShow: P.string.isRequired,
 };
